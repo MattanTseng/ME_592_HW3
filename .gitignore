@@ -8,6 +8,7 @@ __pycache__/
 
 # directories
 Combustion_data_ME592_Assignment/
+data/
 
 # Distribution / packaging
 .Python
