@@ -2,5 +2,5 @@
 logging
 venv
 Zare_data
-lightning_logs
+**/lightning_logs
 **/__pycache__
