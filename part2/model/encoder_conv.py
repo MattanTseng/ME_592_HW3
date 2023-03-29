@@ -7,15 +7,15 @@ class EncoderConv(nn.Module):
         super().__init__()
 
         self.conv = nn.Sequential(
-            nn.Conv2d(1, 16, kernel_size=3, stride=2, padding=1),
+            nn.Conv2d(1, 16, kernel_size=(5, 3), stride=2, padding=1),
             nn.GELU(),
-            nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1),
+            nn.Conv2d(16, 32, kernel_size=(5, 3), stride=2, padding=1),
             nn.GELU(),
-            nn.Conv2d(32, 32, kernel_size=3, stride=1, padding=1),
+            nn.Conv2d(32, 32, kernel_size=3, stride=2, padding=1),
             nn.GELU()
         )
 
-        self.fc1 = nn.Linear(32 * 13 * 32, 1024)
+        self.fc1 = nn.Linear(32 * 13 * 31, 1024)
 
     def forward(self, x):
         x = self.conv(x)

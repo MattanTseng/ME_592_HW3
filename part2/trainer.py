@@ -15,13 +15,12 @@ PATH = 'Zare_data/combustion_img_13.mat'
 # train_dataset = CombustionSystemDataset(PATH, 'train_set_x', 'train_set_y')
 
 test_dataset = CombustionSystemDataset(PATH, 'test_set_x', 'test_set_y')
+
 train_dataset = CombustionSystemDataset(PATH, 'test_set_x', 'test_set_y' )
 
 train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=64)
 
-# Train with DDP on multiple gpus. Distributed sampling is also enabled with
-# replace_sampler_ddp=True.
 trainer = pl.Trainer(
     max_epochs=1,
 

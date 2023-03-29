@@ -23,8 +23,6 @@ class AutoEncoderConv(pl.LightningModule):
         # we don't need the label
         x, _ = batch
         x_hat = self.forward(x)
-
-
         loss = F.mse_loss(x, x_hat, reduction="none")
         loss = loss.sum(dim=[1, 2, 3]).mean(dim=[0])
         self.log('train_loss', loss)
