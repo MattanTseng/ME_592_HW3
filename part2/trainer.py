@@ -3,6 +3,7 @@ from torchvision import transforms
 from model.autoencoder import AutoEncoder
 import pytorch_lightning as pl
 from utils.data_loading import CombustionSystemDataset
+import torch
 
 transform = transforms.Compose([
     transforms.ToTensor()
@@ -21,9 +22,16 @@ train_dataset = CombustionSystemDataset(PATH, 'test_set_x', 'test_set_y' )
 train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=64)
 
+gpus = torch.cuda.device_count()
 
-trainer = pl.Trainer(max_epochs=2)
-
+# Train with DDP on multiple gpus. Distributed sampling is also enabled with
+# replace_sampler_ddp=True.
+trainer = pl.Trainer(
+    max_epochs=20,
+    gpus=gpus,
+    strategy="dp",
+    replace_sampler_ddp=True,
+)
 model = AutoEncoder()
 trainer.fit(model, train_loader)
 
