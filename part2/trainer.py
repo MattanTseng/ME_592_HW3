@@ -20,10 +20,15 @@ train_dataset = CombustionSystemDataset(PATH, 'test_set_x', 'test_set_y' )
 
 train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=64)
+gpus = torch.cuda.device_count()
 
+# Train with DDP on multiple gpus. Distributed sampling is also enabled with
+# replace_sampler_ddp=True.
 trainer = pl.Trainer(
-    max_epochs=1,
-
+    max_epochs=20,
+    gpus=gpus,
+    strategy="dp",
+    replace_sampler_ddp=True,
 )
 model = AutoEncoderConv()
 trainer.fit(model, train_loader)
