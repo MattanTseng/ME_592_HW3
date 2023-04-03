@@ -10,6 +10,10 @@ __pycache__/
 Combustion_data_ME592_Assignment/
 data/
 
+# files 
+*.mat
+*.pth
+
 # Distribution / packaging
 .Python
 build/
