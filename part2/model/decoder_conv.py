@@ -4,7 +4,7 @@ import torch.nn as nn
 class DecoderConv(nn.Module):
     def __init__(self):
         super().__init__()
-        self.linear = nn.Sequential(nn.Linear(1024, 32 * 13 * 31), nn.GELU())
+        self.linear = nn.Sequential(nn.Linear(1024*4, 32 * 13 * 31), nn.GELU())
         self.net = nn.Sequential(
             nn.ConvTranspose2d(32, 32, kernel_size=3, stride=2, padding=1, output_padding=1),
             nn.GELU(),

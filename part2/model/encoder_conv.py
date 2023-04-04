@@ -15,7 +15,7 @@ class EncoderConv(nn.Module):
             nn.GELU()
         )
 
-        self.fc1 = nn.Linear(32 * 13 * 31, 1024)
+        self.fc1 = nn.Linear(32 * 13 * 31, 1024*4)
 
     def forward(self, x):
         x = self.conv(x)
