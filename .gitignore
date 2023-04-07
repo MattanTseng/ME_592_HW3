@@ -10,6 +10,7 @@ __pycache__/
 Combustion_data_ME592_Assignment/
 data/
 cifar_net.pth
+*.mat
 
 # Distribution / packaging
 .Python
