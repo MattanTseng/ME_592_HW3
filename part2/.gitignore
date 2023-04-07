@@ -1,6 +1,6 @@
 .idea 
-logging
 venv
 Zare_data
 **/lightning_logs
 **/__pycache__
+**/logging
